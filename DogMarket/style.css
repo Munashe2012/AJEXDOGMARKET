@@ -1,0 +1,698 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f6f8;
+    color: #151515;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* BUTTONS */
+
+.primary-btn {
+    border: none;
+    background: #111;
+    color: white;
+    padding: 14px 22px;
+    border-radius: 12px;
+    font-weight: 700;
+}
+
+.primary-btn:hover {
+    opacity: .85;
+}
+
+.outline-btn {
+    background: white;
+    color: #111;
+    border: 1px solid #ddd;
+    padding: 14px 22px;
+    border-radius: 12px;
+    font-weight: 700;
+}
+
+
+/* LOGIN */
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.78);
+    backdrop-filter: blur(12px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 20px;
+}
+
+.auth-card,
+.role-card {
+    width: 100%;
+    max-width: 430px;
+    background: white;
+    border-radius: 28px;
+    padding: 35px;
+    box-shadow: 0 30px 100px rgba(0,0,0,.3);
+    text-align: center;
+}
+
+.brand-icon {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.auth-card h1,
+.role-card h1 {
+    font-size: 27px;
+    margin-bottom: 10px;
+}
+
+.muted {
+    color: #777;
+    line-height: 1.6;
+}
+
+.auth-card input {
+    width: 100%;
+    padding: 15px;
+    margin-top: 12px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+}
+
+.auth-card .primary-btn {
+    width: 100%;
+    margin-top: 18px;
+}
+
+.small-text {
+    color: #999;
+    font-size: 12px;
+    margin-top: 15px;
+}
+
+
+/* ROLE */
+
+.role-card {
+    max-width: 650px;
+}
+
+.role-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.role-grid button {
+    border: 1px solid #e3e3e3;
+    background: #fafafa;
+    padding: 22px 12px;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.role-grid button:hover {
+    transform: translateY(-3px);
+    background: white;
+}
+
+.role-grid span {
+    font-size: 35px;
+}
+
+.role-grid small {
+    color: #777;
+}
+
+
+/* HEADER */
+
+header {
+    height: 72px;
+    background: rgba(255,255,255,.94);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: 900;
+}
+
+nav {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #555;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#userBadge {
+    background: #f1f1f1;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.add-top-btn,
+.small-add {
+    border: none;
+    background: #111;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 15px;
+    font-weight: bold;
+}
+
+
+/* HERO */
+
+.hero {
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    padding: 80px 8%;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.82),
+            rgba(0,0,0,.35)
+        ),
+        url("https://images.unsplash.com/photo-1552053831-71594a27632d")
+        center/cover;
+}
+
+.hero-content {
+    max-width: 720px;
+    color: white;
+}
+
+.trending-badge {
+    display: inline-block;
+    background: rgba(255,255,255,.14);
+    border: 1px solid rgba(255,255,255,.25);
+    padding: 9px 14px;
+    border-radius: 30px;
+    font-size: 11px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(45px,7vw,80px);
+    line-height: .98;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    display: block;
+    color: #d7d7d7;
+}
+
+.hero p {
+    font-size: 18px;
+    line-height: 1.7;
+    max-width: 580px;
+    color: #ddd;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+
+/* SEARCH */
+
+.search-section {
+    padding: 55px 8%;
+    background: white;
+}
+
+.search-title span,
+.feed-header span,
+.section-title span,
+.post-card > span {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #888;
+}
+
+.search-title h2 {
+    margin-top: 7px;
+}
+
+.search-bar {
+    margin-top: 25px;
+    display: flex;
+    gap: 10px;
+}
+
+.search-bar input,
+.search-bar select {
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+}
+
+.search-bar input {
+    flex: 1;
+}
+
+
+/* SECTIONS */
+
+.feed-section {
+    padding: 70px 8%;
+}
+
+.light-section {
+    background: #eeeeee;
+}
+
+.feed-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 30px;
+}
+
+.feed-header h2 {
+    margin-top: 7px;
+}
+
+.feed-header select {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: white;
+}
+
+
+/* GRID */
+
+.listing-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fill,minmax(280px,1fr));
+    gap: 22px;
+}
+
+
+/* CARDS */
+
+.listing-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #eee;
+    box-shadow: 0 7px 30px rgba(0,0,0,.05);
+    transition: .25s;
+}
+
+.listing-card:hover {
+    transform: translateY(-5px);
+}
+
+.media-container {
+    height: 280px;
+    background: #e9e9e9;
+    overflow: hidden;
+}
+
+.media-container img,
+.media-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.media-placeholder {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 70px;
+}
+
+.listing-content {
+    padding: 20px;
+}
+
+.listing-content h3 {
+    font-size: 20px;
+    margin-bottom: 7px;
+}
+
+.breed {
+    color: #777;
+    font-size: 13px;
+}
+
+.listing-info {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+    margin: 15px 0;
+}
+
+.info-pill {
+    background: #f3f3f3;
+    padding: 6px 9px;
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+.listing-description {
+    color: #666;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.listing-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.listing-actions button {
+    flex: 1;
+    padding: 11px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background: white;
+    font-weight: 700;
+}
+
+.listing-actions .contact {
+    background: #111;
+    color: white;
+}
+
+.listing-actions .report {
+    flex: 0 0 45px;
+}
+
+
+/* FEATURES */
+
+.feature-section {
+    padding: 80px 8%;
+    background: white;
+}
+
+.section-title {
+    margin-bottom: 35px;
+}
+
+.section-title h2 {
+    font-size: 36px;
+    margin-top: 8px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 15px;
+}
+
+.feature-card {
+    border: 1px solid #eee;
+    padding: 28px;
+    border-radius: 20px;
+    background: #fafafa;
+}
+
+.feature-card > div {
+    font-size: 35px;
+    margin-bottom: 18px;
+}
+
+.feature-card p {
+    color: #777;
+    line-height: 1.6;
+}
+
+
+/* FOOTER */
+
+footer {
+    background: #080808;
+    color: white;
+    text-align: center;
+    padding: 50px 8%;
+}
+
+.footer-logo {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+footer p {
+    color: #999;
+}
+
+.copyright {
+    margin-top: 25px;
+    font-size: 12px;
+}
+
+
+/* MODAL */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.7);
+    backdrop-filter: blur(8px);
+    z-index: 5000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.post-card,
+.report-card {
+    width: 100%;
+    max-width: 600px;
+    background: white;
+    border-radius: 25px;
+    padding: 30px;
+    position: relative;
+}
+
+.post-card h2 {
+    font-size: 32px;
+    margin: 8px 0;
+}
+
+.post-card label {
+    display: block;
+    margin-top: 17px;
+    margin-bottom: 7px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.post-card input,
+.post-card textarea,
+.post-card select,
+.report-card select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.post-card textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.two-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.close-btn {
+    position: absolute;
+    right: 18px;
+    top: 15px;
+    border: none;
+    background: #eee;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    font-size: 23px;
+}
+
+.media-preview {
+    margin-top: 12px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.media-preview img,
+.media-preview video {
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+}
+
+.safety-note {
+    background: #f3f7f3;
+    padding: 13px;
+    border-radius: 10px;
+    margin-top: 18px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.full-btn {
+    width: 100%;
+    margin-top: 18px;
+}
+
+
+/* TOAST */
+
+#toast {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: #111;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 12px;
+    display: none;
+    z-index: 99999;
+}
+
+
+/* MOBILE */
+
+@media(max-width:800px) {
+
+    header {
+        padding: 0 4%;
+    }
+
+    nav {
+        display: none;
+    }
+
+    #userBadge {
+        display: none;
+    }
+
+    .hero {
+        padding: 60px 6%;
+    }
+
+    .hero h1 {
+        font-size: 50px;
+    }
+
+    .feed-section,
+    .feature-section,
+    .search-section {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .search-bar {
+        flex-direction: column;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .role-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .two-inputs {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media(max-width:500px) {
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .listing-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .auth-card,
+    .role-card,
+    .post-card {
+        padding: 25px;
+    }
+
+}
+<title>AJEX DOG MARKET</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">

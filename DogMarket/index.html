@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AJEX DOG MARKET</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- LOGIN -->
+
+<div id="loginScreen" class="overlay">
+
+    <div class="auth-card">
+
+        <div class="brand-icon">🐾</div>
+
+        <h1>AJEX DOG MARKET</h1>
+
+        <p class="muted">
+            The modern marketplace for the dog community.
+        </p>
+
+        <input id="username" type="text" placeholder="Enter your name">
+
+        <input id="email" type="email" placeholder="Email address">
+
+        <input id="password" type="password" placeholder="Password">
+
+        <button class="primary-btn" onclick="login()">
+            Continue
+        </button>
+
+        <p class="small-text">
+            By continuing, you agree to use AJEX DOG MARKET responsibly.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ROLE -->
+
+<div id="roleScreen" class="overlay hidden">
+
+    <div class="role-card">
+
+        <div class="brand-icon">🐕</div>
+
+        <h1>Welcome to AJEX</h1>
+
+        <p>How do you want to use AJEX DOG MARKET?</p>
+
+        <div class="role-grid">
+
+            <button onclick="selectRole('buyer')">
+                <span>🛒</span>
+                <strong>Buyer</strong>
+                <small>Browse dogs, products and services.</small>
+            </button>
+
+            <button onclick="selectRole('seller')">
+                <span>📢</span>
+                <strong>Seller</strong>
+                <small>Post dogs, products, services and events.</small>
+            </button>
+
+            <button onclick="selectRole('both')">
+                <span>🔄</span>
+                <strong>Both</strong>
+                <small>Buy, browse and post.</small>
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- APP -->
+
+<div id="app" class="hidden">
+
+<header>
+
+    <div class="logo">
+        🐾 AJEX
+    </div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#discover">Dogs</a>
+        <a href="#products">Products</a>
+        <a href="#services">Services</a>
+        <a href="#events">Events</a>
+    </nav>
+
+    <div class="header-right">
+
+        <span id="userBadge"></span>
+
+        <button
+            id="headerAddBtn"
+            class="add-top-btn"
+            onclick="openPost()"
+        >
+            + Add
+        </button>
+
+    </div>
+
+</header>
+
+
+<main>
+
+<!-- HERO -->
+
+<section id="home" class="hero">
+
+    <div class="hero-content">
+
+        <div class="trending-badge">
+            ✨ THE NEW WAY TO FIND DOGS
+        </div>
+
+        <h1>
+            Find your next
+            <span>best friend.</span>
+        </h1>
+
+        <p>
+            Discover dogs, accessories, services and events.
+            Connect with the dog community.
+        </p>
+
+        <div class="hero-buttons">
+
+            <button
+                class="primary-btn"
+                onclick="scrollToFeed()"
+            >
+                Explore Dogs
+            </button>
+
+            <button
+                id="heroAddBtn"
+                class="outline-btn"
+                onclick="openPost()"
+            >
+                + Add
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SEARCH -->
+
+<section class="search-section">
+
+    <div class="search-title">
+
+        <span>DISCOVER</span>
+
+        <h2>Find what you're looking for</h2>
+
+    </div>
+
+    <div class="search-bar">
+
+        <input
+            id="searchInput"
+            type="text"
+            placeholder="Search dogs, products, services..."
+            oninput="renderAll()"
+        >
+
+        <select
+            id="countryFilter"
+            onchange="renderAll()"
+        >
+
+            <option value="all">🌍 All countries</option>
+            <option>Zimbabwe</option>
+            <option>South Africa</option>
+            <option>Botswana</option>
+            <option>Zambia</option>
+            <option>United Kingdom</option>
+            <option>United States</option>
+
+        </select>
+
+    </div>
+
+</section>
+
+
+<!-- DOGS -->
+
+<section id="discover" class="feed-section">
+
+    <div class="feed-header">
+
+        <div>
+            <span>DOG MARKET</span>
+            <h2>🐕 Latest Dogs</h2>
+        </div>
+
+        <select
+            id="dogSort"
+            onchange="renderAll()"
+        >
+
+            <option value="new">Newest</option>
+            <option value="popular">Popular</option>
+
+        </select>
+
+    </div>
+
+    <div id="dogsGrid" class="listing-grid"></div>
+
+</section>
+
+
+<!-- PRODUCTS -->
+
+<section id="products" class="feed-section light-section">
+
+    <div class="feed-header">
+
+        <div>
+            <span>DOG SHOP</span>
+            <h2>🦴 Dog Accessories & Products</h2>
+        </div>
+
+        <button
+            class="small-add"
+            onclick="openPost('product')"
+        >
+            + Add Product
+        </button>
+
+    </div>
+
+    <div id="productsGrid" class="listing-grid"></div>
+
+</section>
+
+
+<!-- SERVICES -->
+
+<section id="services" class="feed-section">
+
+    <div class="feed-header">
+
+        <div>
+            <span>DOG SERVICES</span>
+            <h2>🐕‍🦺 Services</h2>
+        </div>
+
+        <button
+            class="small-add"
+            onclick="openPost('service')"
+        >
+            + Add Service
+        </button>
+
+    </div>
+
+    <div id="servicesGrid" class="listing-grid"></div>
+
+</section>
+
+
+<!-- EVENTS -->
+
+<section id="events" class="feed-section light-section">
+
+    <div class="feed-header">
+
+        <div>
+            <span>COMMUNITY</span>
+            <h2>🏆 Dog Shows & Events</h2>
+        </div>
+
+        <button
+            class="small-add"
+            onclick="openPost('event')"
+        >
+            + Add Event
+        </button>
+
+    </div>
+
+    <div id="eventsGrid" class="listing-grid"></div>
+
+</section>
+
+
+<!-- FEATURES -->
+
+<section class="feature-section">
+
+    <div class="section-title">
+
+        <span>AJEX DOG MARKET</span>
+
+        <h2>Everything dogs, in one place.</h2>
+
+    </div>
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+            <div>🐕</div>
+            <h3>Dogs</h3>
+            <p>Discover dogs posted by the community.</p>
+        </div>
+
+        <div class="feature-card">
+            <div>🦴</div>
+            <h3>Products</h3>
+            <p>Shop collars, toys, beds, food and accessories.</p>
+        </div>
+
+        <div class="feature-card">
+            <div>🐕‍🦺</div>
+            <h3>Services</h3>
+            <p>Find grooming, training, boarding and more.</p>
+        </div>
+
+        <div class="feature-card">
+            <div>🏆</div>
+            <h3>Events</h3>
+            <p>Discover dog shows and community events.</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+    <div class="footer-logo">
+        🐾 AJEX DOG MARKET
+    </div>
+
+    <p>
+        Dogs • Products • Services • Events
+    </p>
+
+    <p class="copyright">
+        © 2026 AJEX DOG MARKET
+    </p>
+
+</footer>
+
+
+<!-- ADD MODAL -->
+
+<div id="postModal" class="modal hidden">
+
+    <div class="post-card">
+
+        <button
+            class="close-btn"
+            onclick="closePost()"
+        >
+            ×
+        </button>
+
+        <span>CREATE LISTING</span>
+
+        <h2 id="postTitle">Add something</h2>
+
+        <p class="muted">
+            Share your listing with the AJEX community.
+        </p>
+
+
+        <!-- TYPE -->
+
+        <label>What are you adding?</label>
+
+        <select
+            id="listingType"
+            onchange="changePostType()"
+        >
+
+            <option value="dog">🐕 Dog</option>
+
+            <option value="product">
+                🦴 Product / Accessory
+            </option>
+
+            <option value="service">
+                🐕‍🦺 Service
+            </option>
+
+            <option value="event">
+                🏆 Event
+            </option>
+
+        </select>
+
+
+        <!-- COMMON -->
+
+        <label>Name / Title</label>
+
+        <input
+            id="listingTitle"
+            type="text"
+            placeholder="Name or title"
+        >
+
+
+        <!-- DOG FIELDS -->
+
+        <div id="dogFields">
+
+            <div class="two-inputs">
+
+                <div>
+
+                    <label>Breed</label>
+
+                    <input
+                        id="dogBreed"
+                        type="text"
+                        placeholder="German Shepherd"
+                    >
+
+                </div>
+
+                <div>
+
+                    <label>Age</label>
+
+                    <input
+                        id="dogAge"
+                        type="text"
+                        placeholder="8 months"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="two-inputs">
+
+                <div>
+
+                    <label>Gender</label>
+
+                    <select id="dogGender">
+
+                        <option>Male</option>
+                        <option>Female</option>
+
+                    </select>
+
+                </div>
+
+                <div>
+
+                    <label>Country</label>
+
+                    <select id="listingCountry">
+
+                        <option>Zimbabwe</option>
+                        <option>South Africa</option>
+                        <option>Botswana</option>
+                        <option>Zambia</option>
+                        <option>United Kingdom</option>
+                        <option>United States</option>
+                        <option>Other</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCT FIELDS -->
+
+        <div
+            id="productFields"
+            class="hidden"
+        >
+
+            <label>Product Category</label>
+
+            <select id="productCategory">
+
+                <option>Collars</option>
+                <option>Leashes</option>
+                <option>Dog Beds</option>
+                <option>Toys</option>
+                <option>Dog Food</option>
+                <option>Crates</option>
+                <option>Grooming</option>
+                <option>Training Equipment</option>
+                <option>Other</option>
+
+            </select>
+
+
+            <label>Price</label>
+
+            <input
+                id="productPrice"
+                type="text"
+                placeholder="Example: $20"
+            >
+
+        </div>
+
+
+        <!-- SERVICE FIELDS -->
+
+        <div
+            id="serviceFields"
+            class="hidden"
+        >
+
+            <label>Service Type</label>
+
+            <select id="serviceType">
+
+                <option>Dog Grooming</option>
+                <option>Dog Training</option>
+                <option>Dog Walking</option>
+                <option>Dog Boarding</option>
+                <option>Pet Transport</option>
+                <option>Veterinary Service</option>
+                <option>Other</option>
+
+            </select>
+
+
+            <label>Service Price (optional)</label>
+
+            <input
+                id="servicePrice"
+                type="text"
+                placeholder="Example: $15"
+            >
+
+        </div>
+
+
+        <!-- EVENT FIELDS -->
+
+        <div
+            id="eventFields"
+            class="hidden"
+        >
+
+            <label>Event Date</label>
+
+            <input
+                id="eventDate"
+                type="date"
+            >
+
+            <label>Event Type</label>
+
+            <input
+                id="eventType"
+                type="text"
+                placeholder="Dog Show / Competition / Meetup"
+            >
+
+        </div>
+
+
+        <!-- LOCATION -->
+
+        <label>Location</label>
+
+        <input
+            id="listingLocation"
+            type="text"
+            placeholder="Harare"
+        >
+
+
+        <!-- DESCRIPTION -->
+
+        <label>Description</label>
+
+        <textarea
+            id="listingDescription"
+            placeholder="Tell people about your listing..."
+        ></textarea>
+
+
+        <!-- MEDIA -->
+
+        <label>
+            📸 Picture / 🎥 Video
+        </label>
+
+        <input
+            id="listingMedia"
+            type="file"
+            accept="image/*,video/*"
+        >
+
+        <div
+            id="mediaPreview"
+            class="media-preview"
+        ></div>
+
+
+        <div class="safety-note">
+
+            🛡️ Only post animals, products,
+            services and information you have
+            the right to share.
+
+        </div>
+
+
+        <button
+            class="primary-btn full-btn"
+            onclick="publishListing()"
+        >
+            Publish Listing
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- REPORT -->
+
+<div
+    id="reportModal"
+    class="modal hidden"
+>
+
+    <div class="report-card">
+
+        <button
+            class="close-btn"
+            onclick="closeReport()"
+        >
+            ×
+        </button>
+
+        <h2>Report listing</h2>
+
+        <p>Why are you reporting this listing?</p>
+
+        <select id="reportReason">
+
+            <option>Suspicious listing</option>
+            <option>Wrong information</option>
+            <option>Inappropriate content</option>
+            <option>Animal welfare concern</option>
+            <option>Other</option>
+
+        </select>
+
+        <button
+            class="primary-btn full-btn"
+            onclick="submitReport()"
+        >
+            Submit Report
+        </button>
+
+    </div>
+
+</div>
+
+
+<div id="toast"></div>
+
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
+
+
+<title>AJEX DOG MARKET</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
